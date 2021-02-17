@@ -6,6 +6,7 @@ import { auth } from "./firebase";
 import Feed from './components/Feed';
 import Auth from './components/Auth';
 import Home from './components/Home';
+import PostInput from './components/PostInput';
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const App: React.FC = () => {
@@ -37,6 +38,7 @@ const App: React.FC = () => {
         <Route exact path="/" component={Home}></Route>
         <Route path="/feed" component={Feed}></Route>
         <Route path="/auth" component={Auth}></Route>
+        <Route path="/postinput" component={PostInput}></Route>
       </Router>      
     </>
   );

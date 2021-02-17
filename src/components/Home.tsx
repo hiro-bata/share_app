@@ -7,6 +7,7 @@ const Home: React.FC = () => {
       <h1>Hello world!!</h1>
       <Link to="/feed">Feed</Link><br/>
       <Link to="/auth">Auth</Link><br/>
+      <Link to="/postinput">PostInput</Link><br/>
     </>
   );
 }

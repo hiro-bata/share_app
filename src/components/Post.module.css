@@ -29,7 +29,7 @@
     font-size: 15px;
   }
   .post_tweet > p {
-    color: whitesmoke;
+    color: black;
     font-size: 20px;
   }
   .post_tweetImage {
@@ -44,7 +44,7 @@
   }
   .post_commentIcon {
     margin-top: 15px;
-    color: whitesmoke;
+    color: black;
     cursor: pointer;
   }
   .post_comment {
@@ -61,7 +61,7 @@
   }
   .post_commentText {
     font-size: 15px;
-    color: whitesmoke;
+    color: black;
     margin-right: 10px;
   }
   .post_form {
@@ -78,7 +78,7 @@
   }
   .post_button {
     border: none;
-    color: whitesmoke;
+    color: black;
     background-color: transparent;
     cursor: pointer;
   }

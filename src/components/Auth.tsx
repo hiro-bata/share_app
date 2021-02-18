@@ -24,6 +24,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
+import firebase from "firebase/app";
 
 function getModalStyle() {
   const top = 50;
@@ -80,16 +81,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Auth: React.FC = (props) => {
+const Auth: React.FC = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const currentUser = firebase.auth().currentUser;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [avatarImage, setAvatarImage] = useState<File | null>(null);
   const [isLogin, setIsLogin] = useState(true);
   const [openModal, setOpenModal] = React.useState(false);
-  const [resetEmail, setResetEmail] = useState("");
+  const [resetEmail, setResetEmail] = useState(""); 
   const onChangeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files![0]) {
       setAvatarImage(e.target.files![0]);
@@ -110,11 +112,9 @@ const Auth: React.FC = (props) => {
   };
   const signInGoogle = async () => {
     await auth.signInWithPopup(provider).catch((err) => alert(err.message));
-    await authToken();
   };
   const signInEmail = async () => {
     await auth.signInWithEmailAndPassword(email, password);
-    await authToken();
   };
   const signUpEmail = async () => {
     const authUser = await auth.createUserWithEmailAndPassword(email, password);
@@ -142,27 +142,28 @@ const Auth: React.FC = (props) => {
     );
   };
 
-  const authToken = () => {
-      const authData = {
-          email: email,
-          password: password,
-      }
+// //   localstorageでcurrentUserの検知
+//   const authToken = () => {
+//       const authData = {
+//           email: email,
+//           password: password,
+//       }
 
-    //   signIn用
-      let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDcmX92UEtsLYDfQarLLNMfUhp_yUZHVUk'
-      axios.post(url, authData)
-        .then(response => {
-            localStorage.setItem('token', response.data.idToken)
-        })
-        .catch(err => {
-            alert(err.message);
-        })
-  
-  }
+//     //   signIn用
+//       let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDcmX92UEtsLYDfQarLLNMfUhp_yUZHVUk'
+//       axios.post(url, authData)
+//         .then(response => {
+//             localStorage.setItem('token', response.data.idToken)
+//             localStorage.setItem('email', response.data.email)
+//         })
+//         .catch(err => {
+//             alert(err.message);
+//         })
+//   }
 
   return (
     <>
-        {localStorage.getItem('token') && <Redirect to="/" />}
+        {currentUser && <Redirect to="/" />}
         <Grid container component="main" className={classes.root}>
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
@@ -292,7 +293,6 @@ const Auth: React.FC = (props) => {
                     </span>
                 </Grid>
                 </Grid>
-
                 <Button
                 fullWidth
                 variant="contained"

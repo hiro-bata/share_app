@@ -10,6 +10,7 @@ import { Redirect } from 'react-router-dom';
 
 const PostInput = () => {
     const user = useSelector(selectUser);
+    const currentUser = firebase.auth().currentUser;
     const [tweetImage, setTweetImage] = useState<File | null>(null);
     const [tweetMsg, setTweetMsg] = useState("");
   
@@ -67,7 +68,7 @@ const PostInput = () => {
   
     return (
       <>
-        {!localStorage.getItem('token') && <Redirect to="/auth" />}
+        {!currentUser && <Redirect to="/auth" />}
         <form onSubmit={sendTweet}>
           <div className={styles.tweet_form}>
             <Avatar

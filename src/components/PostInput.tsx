@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
 import { Avatar, Button, IconButton } from "@material-ui/core";
 import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
+import { Redirect } from 'react-router-dom';
 
 const PostInput = () => {
     const user = useSelector(selectUser);
@@ -66,6 +67,7 @@ const PostInput = () => {
   
     return (
       <>
+        {!localStorage.getItem('token') && <Redirect to="/auth" />}
         <form onSubmit={sendTweet}>
           <div className={styles.tweet_form}>
             <Avatar

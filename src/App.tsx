@@ -7,7 +7,7 @@ import Feed from './components/Feed';
 import Auth from './components/Auth';
 import Home from './components/Home';
 import PostInput from './components/PostInput';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, BrowserRouter } from "react-router-dom";
 
 const App: React.FC = () => {
   const user = useSelector(selectUser);
@@ -33,14 +33,12 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Router>
-        <Route exact path="/" component={Home}></Route>
-        <Route path="/feed" component={Feed}></Route>
-        <Route path="/auth" component={Auth}></Route>
-        <Route path="/postinput" component={PostInput}></Route>
-      </Router>      
-    </>
+        <Router>
+          <Route exact path="/" component={Home}></Route>
+          <Route path="/feed" component={Feed}></Route>
+          <Route path="/auth" component={Auth}></Route>
+          <Route path="/postinput" component={PostInput}></Route> 
+        </Router>         
   );
 }
 

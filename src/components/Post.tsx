@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
 const Post: React.FC<PROPS> = (props) => {
   const classes = useStyles();
   const user = useSelector(selectUser);
+  const currentUser = firebase.auth().currentUser;
   const [openComments, setOpenComments] = useState(false);
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState<COMMENT[]>([
@@ -126,7 +127,7 @@ const Post: React.FC<PROPS> = (props) => {
               </div>
             ))}
 
-            {localStorage.getItem('token') && (
+            {currentUser && (
                 <form onSubmit={newComment}>
                     <div className={styles.post_form}>
                         <input

@@ -11,6 +11,7 @@ const Feed: React.FC = () => {
       id: "",
       avatar: "",
       image: "",
+      title: "",
       text: "",
       timestamp: null,
       username: "",
@@ -27,6 +28,7 @@ const Feed: React.FC = () => {
             id: doc.id,
             avatar: doc.data().avatar,
             image: doc.data().image,
+            title: doc.data().title,
             text: doc.data().text,
             timestamp: doc.data().timestamp,
             username: doc.data().username,
@@ -51,6 +53,7 @@ const Feed: React.FC = () => {
                 postId={post.id}
                 avatar={post.avatar}
                 image={post.image}
+                title={post.title}
                 text={post.text}
                 timestamp={post.timestamp}
                 username={post.username}

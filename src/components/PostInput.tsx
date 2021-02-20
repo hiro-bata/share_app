@@ -13,6 +13,7 @@ const PostInput = () => {
     const currentUser = firebase.auth().currentUser;
     const [tweetImage, setTweetImage] = useState<File | null>(null);
     const [tweetMsg, setTweetMsg] = useState("");
+    const [tweetTitle, setTweetTitle] = useState("");
   
     const onChangeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.target.files![0]) {
@@ -20,6 +21,7 @@ const PostInput = () => {
         e.target.value = "";
       }
     };
+
     const sendTweet = (e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
       if (tweetImage) {
@@ -46,6 +48,7 @@ const PostInput = () => {
                 await db.collection("posts").add({
                   avatar: user.photoUrl,
                   image: url,
+                  title: tweetTitle,
                   text: tweetMsg,
                   timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                   username: user.displayName,
@@ -57,12 +60,14 @@ const PostInput = () => {
         db.collection("posts").add({
           avatar: user.photoUrl,
           image: "",
+          title: tweetTitle,
           text: tweetMsg,
           timestamp: firebase.firestore.FieldValue.serverTimestamp(),
           username: user.displayName,
         });
       }
       setTweetImage(null);
+      setTweetTitle("");
       setTweetMsg("");
     };
   
@@ -80,7 +85,15 @@ const PostInput = () => {
             />
             <input
               className={styles.tweet_input}
-              placeholder="What's happening?"
+              placeholder="知恵の名"
+              type="text"
+              autoFocus
+              value={tweetTitle}
+              onChange={(e) => setTweetTitle(e.target.value)}
+            />
+            <input
+              className={styles.tweet_input}
+              placeholder="詳細"
               type="text"
               autoFocus
               value={tweetMsg}

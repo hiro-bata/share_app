@@ -13,6 +13,7 @@ interface PROPS {
   postId: string;
   avatar: string;
   image: string;
+  title: string;
   text: string;
   timestamp: any;
   username: string;
@@ -43,7 +44,7 @@ const Post: React.FC<PROPS> = (props) => {
   const [comments, setComments] = useState<COMMENT[]>([
     {
       id: "",
-      avatar: "",
+      avatar: "", 
       text: "",
       username: "",
       timestamp: null,
@@ -99,7 +100,7 @@ const Post: React.FC<PROPS> = (props) => {
             </h3>
           </div>
           <div className={styles.post_tweet}>
-            <p>{props.text}</p>
+            <h2>知恵の名：{props.title}</h2>
           </div>
         </div>
         {props.image && (

@@ -8,6 +8,8 @@ import Home from './components/Home';
 import PostInput from './components/PostInput';
 import { BrowserRouter as Router, Route, Switch, BrowserRouter } from "react-router-dom";
 import Header from './components/Header';
+import Footer from './components/Footer';
+
 
 const App: React.FC = () => {
   const user = useSelector(selectUser);
@@ -40,6 +42,7 @@ const App: React.FC = () => {
           <Route path="/feed" component={Feed}></Route>
           <Route path="/auth" component={Auth}></Route>
           <Route path="/postinput" component={PostInput}></Route> 
+          <Footer />
         </Router>
     </>
   );

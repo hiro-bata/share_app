@@ -8,17 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      Share Wisdom
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),
@@ -43,10 +32,6 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
 }));
 
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -54,9 +39,6 @@ const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const Home: React.FC = () => {
   const currentUser = firebase.auth().currentUser;
   const classes = useStyles();
-  const signOut = async () => {
-    await auth.signOut();
-  };
 
   return (
     <>
@@ -78,9 +60,6 @@ const Home: React.FC = () => {
               align="center"
               paragraph
             >
-              {/* Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely. */}
               こんな時こそ、みんなの知恵を共有しよう
             </Typography>
             <div className={classes.heroButtons}>
@@ -122,9 +101,6 @@ const Home: React.FC = () => {
           </Grid>
         </Container>
       </main>
-      <footer className={classes.footer}>
-        <Copyright />
-      </footer>
     </>
   );
 };

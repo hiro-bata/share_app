@@ -2,6 +2,9 @@
     display: flex;
     align-items: flex-start;
     padding-bottom: 10px;
+    margin-top: 40px;
+    border: dotted 5px #CCCCCC;
+    border-radius: 30px;
   }
   .post_avatar {
     padding: 20px;
@@ -17,7 +20,7 @@
   .post_headerUser {
     font-weight: 600;
     font-size: 18px;
-    color: white;
+    color: black;
     margin-right: 12px;
   }
   .post_headerTime {
@@ -35,12 +38,12 @@
   .post_tweetImage {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; 
   }
   .post_tweetImage > img {
     object-fit: contain;
     border-radius: 20px;
-    max-height: 250px;
+    max-height: 200px;
   }
   .post_commentIcon {
     margin-top: 15px;
@@ -84,4 +87,7 @@
   }
   .post_buttonDisable {
     display: none;
+  }
+
+  @media screen and (max-width: 480px) {
   }

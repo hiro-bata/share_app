@@ -92,7 +92,7 @@ const Post: React.FC<PROPS> = (props) => {
         <div>
           <div className={styles.post_header}>
             <h3>
-              <span className={styles.post_headerUser}>@{props.username}</span>
+              <span className={styles.post_headerUser}>{props.username}</span>
               <span className={styles.post_headerTime}>
                 {new Date(props.timestamp?.toDate()).toLocaleString()}
               </span>

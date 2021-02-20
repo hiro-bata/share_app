@@ -112,9 +112,11 @@ const Auth: React.FC = () => {
   };
   const signInGoogle = async () => {
     await auth.signInWithPopup(provider).catch((err) => alert(err.message));
+    alert("ログインしました!ご利用ありがとうございます")
   };
   const signInEmail = async () => {
     await auth.signInWithEmailAndPassword(email, password);
+    alert("ログインしました!ご利用ありがとうございます！")
   };
   const signUpEmail = async () => {
     const authUser = await auth.createUserWithEmailAndPassword(email, password);

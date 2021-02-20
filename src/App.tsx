@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import styles from './App.module.css'
 import { useSelector, useDispatch } from "react-redux";
 import { selectUser, login, logout } from "./features/userSlice";
 import { auth } from "./firebase";
@@ -34,13 +33,15 @@ const App: React.FC = () => {
   }, [dispatch]);
 
   return (
+    <>
         <Router>
           <Header />
           <Route exact path="/" component={Home}></Route>
           <Route path="/feed" component={Feed}></Route>
           <Route path="/auth" component={Auth}></Route>
           <Route path="/postinput" component={PostInput}></Route> 
-        </Router>         
+        </Router>
+    </>
   );
 }
 

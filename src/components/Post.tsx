@@ -102,6 +102,7 @@ const Post: React.FC<PROPS> = (props) => {
           </div>
           <div className={styles.post_tweet}>
             <h2>知恵の名：{props.title}</h2>
+            <p>{props.text}</p>
           </div>
         </div>
         {props.image && (

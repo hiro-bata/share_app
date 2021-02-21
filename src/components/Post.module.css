@@ -30,6 +30,7 @@
   .post_tweet {
     margin-bottom: 10px;
     font-size: 15px;
+    white-space: pre-wrap;
   }
   .post_tweet > p {
     color: black;

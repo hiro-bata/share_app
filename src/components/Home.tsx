@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage:
       "url(https://images.unsplash.com/photo-1434493651957-4ec11beae249?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)",
     backgroundSize: "cover",
+    backgroundPositionY: "30%",
     padding: theme.spacing(20, 0, 40),
   },
   heroContentText: {
@@ -91,20 +92,19 @@ const Home: React.FC = () => {
             </div>
           </Container>
         </div>
-        <Container className={classes.cardGrid} maxWidth="md">
+        <Container className={styles.homeBody} maxWidth="md">
           <Grid container spacing={4}>
             <h1>より多くの人が充実した生活を送れるように</h1>
           </Grid>
           <Grid container spacing={1}>
             <p>
               コロナ禍で充実した日常を送っている人とそうでない人との差が明確にわかれていると感じています。<br/>
-              原因は様々だと思いますが、その一つとして <span className={styles.textBold}>"自分に合った生活スタイルを手に入れられているか"</span> という要素が<br/>
-              あると考えています。<br/><br/>
+              原因は様々だと思いますが、その一つとして <span className={styles.textBold}>"自分に合った生活スタイルを手に入れられているか"</span> という要素があると考えています。<br/><br/>
               そして、今一つ上手くいっていない人は、<br/>
               生活を豊かにする情報をインプットできていなかったり、そもそも生活スタイルの見直しを重要だと捉えていない傾向があると<br/>
               感じています。<br/><br/>
 
-              そのため、 <span className={styles.textBold}>"日々の生活を充実させるための知恵"</span> を1つのプラットフォームに集約し、<br/>
+              そのため、 <span className={styles.textBold}>"日々の生活を充実させるための知恵"</span> を1つのプラットフォームに集約し、
               生活スタイルの改善に役立つ価値ある情報を広げるべく、 <span className={styles.textBold}>Share Wisdom</span> を立ち上げました。
             </p>
           </Grid>
@@ -117,10 +117,10 @@ const Home: React.FC = () => {
               その中で、自分なりに手応えを感じた行動を投稿して共有してみましょう。<br/><br/>
               
               {!currentUser && (
-                <>
-                  <span className={styles.textBold}>＊ユーザー登録を行うと投稿できるようになります ➡︎</span>
-                  <Link className={styles.authButton} to="auth">Sign In / Sign Up</Link>
-                </>
+                <div>
+                  <span className={styles.note}>＊ユーザー登録を行うと投稿できるようになります</span><br/>
+                  <Link className={styles.homeBodyButton} to="auth">Sign In / Sign Up</Link>
+                </div>
               )}
             </p>
           </Grid>
@@ -132,8 +132,8 @@ const Home: React.FC = () => {
               今まで興味がなかったことや縁がなかったことにトライしてみると、新たな発見が得られ日常が一変することがあります。<br/>
               しかし、そういった新たな情報は自分の中のフィルターによって、無意識にシャットアウトされがちです。<br/>
               投稿一覧を活用し、意識的に新しい情報に触れてみましょう。ユーザー登録を行えば投稿に対してコメントもできます。<br/><br/>
-              <span className={styles.textBold}>＊登録なしで自由に閲覧できます ➡︎</span>
-              <Link className={styles.authButton} to="feed">投稿一覧</Link>
+              <span className={styles.note}>＊登録なしで自由に閲覧できます</span><br/>
+              <Link className={styles.homeBodyButton} to="feed">投稿一覧</Link>
             </p>
           </Grid>
         </Container>

@@ -13,9 +13,8 @@ function Copyright() {
     return (
       <Typography variant="body2" color="textSecondary" align="center">
         {"Copyright © "}
-        Share Wisdom /
-        {new Date().getFullYear()}
-        {"."}
+        Share Wisdom&nbsp;&nbsp;
+        {new Date().getFullYear()}        
       </Typography>
     );
 }

@@ -144,25 +144,6 @@ const Auth: React.FC = () => {
     );
   };
 
-// //   localstorageでcurrentUserの検知
-//   const authToken = () => {
-//       const authData = {
-//           email: email,
-//           password: password,
-//       }
-
-//     //   signIn用
-//       let url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDcmX92UEtsLYDfQarLLNMfUhp_yUZHVUk'
-//       axios.post(url, authData)
-//         .then(response => {
-//             localStorage.setItem('token', response.data.idToken)
-//             localStorage.setItem('email', response.data.email)
-//         })
-//         .catch(err => {
-//             alert(err.message);
-//         })
-//   }
-
   return (
     <>
         {currentUser && <Redirect to="/" />}

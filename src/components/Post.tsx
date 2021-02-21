@@ -8,6 +8,7 @@ import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MessageIcon from "@material-ui/icons/Message";
 import SendIcon from "@material-ui/icons/Send";
+import { Link } from "react-router-dom";
 
 interface PROPS {
   postId: string;

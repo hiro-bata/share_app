@@ -72,16 +72,16 @@ const Header = () => {
           <Drawer  open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             <div className={classes.drawer}>
                 <Link className={classes.list} to="/" onClick={toggleDrawer(anchor, false)}>Home</Link><br/>
-                <Link className={classes.list} to="feed" onClick={toggleDrawer(anchor, false)}>投稿一覧</Link><br/>
+                <Link className={classes.list} to="/feed" onClick={toggleDrawer(anchor, false)}>投稿一覧</Link><br/>
                 {currentUser && (
                     <>
-                        <Link className={classes.list} to="postinput" onClick={toggleDrawer(anchor, false)}>投稿</Link><br/>
-                        <Link className={classes.list} to="postinput" onClick={signOut}>LOGOUT</Link><br/>
+                        <Link className={classes.list} to="/postinput" onClick={toggleDrawer(anchor, false)}>投稿</Link><br/>
+                        <Link className={classes.list} to="/postinput" onClick={signOut}>LOGOUT</Link><br/>
                     </>
                 )}
                 {!currentUser && (
                     <>
-                        <Link className={classes.list} to="auth" onClick={toggleDrawer(anchor, false)}>Sign In / Sign Up</Link>
+                        <Link className={classes.list} to="/auth" onClick={toggleDrawer(anchor, false)}>Sign In / Sign Up</Link>
                     </>
                 )}
             </div>    

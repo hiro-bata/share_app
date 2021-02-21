@@ -8,7 +8,6 @@ import { Avatar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MessageIcon from "@material-ui/icons/Message";
 import SendIcon from "@material-ui/icons/Send";
-import { Link } from "react-router-dom";
 
 interface PROPS {
   postId: string;
@@ -124,7 +123,7 @@ const Post: React.FC<PROPS> = (props) => {
 
                 <span className={styles.post_commentUser}>@{com.username}</span>
                 <span className={styles.post_commentText}>{com.text} </span>
-                <span className={styles.post_headerTime}>
+                <span className={styles.post_commentHeaderTime}>
                   {new Date(com.timestamp?.toDate()).toLocaleString()}
                 </span>
               </div>

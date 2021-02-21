@@ -16,13 +16,11 @@ import {
   IconButton,
   Box,
 } from "@material-ui/core";
-
 import SendIcon from "@material-ui/icons/Send";
 import CameraIcon from "@material-ui/icons/Camera";
 import EmailIcon from "@material-ui/icons/Email";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import firebase from "firebase/app";
 
@@ -38,9 +36,6 @@ function getModalStyle() {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    height: "100vh",
-  },
   modal: {
     outline: "none",
     position: "absolute",
@@ -60,6 +55,7 @@ const useStyles = makeStyles((theme) => ({
         : theme.palette.grey[900],
     backgroundSize: "cover",
     backgroundPosition: "center",
+    backgroundPositionY: "60%",
   },
   paper: {
     margin: theme.spacing(8, 4),
@@ -71,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
   },
-  form: {
+  form: { 
     width: "100%",
     marginTop: theme.spacing(1),
   },
@@ -147,13 +143,13 @@ const Auth: React.FC = () => {
   return (
     <>
         {currentUser && <Redirect to="/" />}
-        <Grid container component="main" className={classes.root}>
+        <Grid container component="main" className={styles.root}>
         <CssBaseline />
-        <Grid item xs={false} sm={4} md={7} className={classes.image} />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={false} sm={false} md={7} className={classes.image} />
+        <Grid item xs={12} sm={12} md={5} component={Paper} elevation={6} square>
             <div className={classes.paper}>
             <Avatar className={classes.avatar}>
-                <LockOutlinedIcon />
+                <VpnKeyIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
                 {isLogin ? "Login" : "Register"}
@@ -179,6 +175,7 @@ const Auth: React.FC = () => {
                     <Box textAlign="center">
                     <IconButton>
                         <label>
+                        <p>Your icon</p>
                         <AccountCircleIcon
                             fontSize="large"
                             className={

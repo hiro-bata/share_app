@@ -30,6 +30,14 @@ const useStyles = makeStyles({
     padding: "10px",
     fontWeight: "bold",
     fontSize: "16px",
+  },
+  header: {
+    display: "flex",
+  },
+  username: {
+    marginTop: "16px",
+    marginLeft: "20px",
+    fontWeight: "bold",
   }
 });
 
@@ -62,13 +70,20 @@ const Header = () => {
     setState({ ...state, [anchor]: open });
   };
 
-  
+  const currentUserName = () => {
+    if(currentUser != null) {
+      return currentUser.displayName;
+    }
+  }
 
   return (
     <div className={classes.fullList}>
       {(['Link'] as Anchor[]).map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button className={classes.button} onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+          <div className={classes.header}>
+            <Button className={classes.button} onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
+            {currentUser && (<p className={classes.username}>ユーザー名：{currentUserName()}</p>)}            
+          </div>
           <Drawer  open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
             <div className={classes.drawer}>
                 <Link className={classes.list} to="/" onClick={toggleDrawer(anchor, false)}>Home</Link><br/>

@@ -10,7 +10,7 @@ import AddAPhotoIcon from "@material-ui/icons/AddAPhoto";
 import { Redirect } from 'react-router-dom';
 import Container from '@material-ui/core/Container';
 import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@material-ui/core/Grid"
 
 const useStyles = makeStyles((theme) => ({  
   heroContent: {
@@ -31,6 +31,7 @@ const PostInput = () => {
     const [tweetImage, setTweetImage] = useState<File | null>(null);
     const [tweetMsg, setTweetMsg] = useState("");
     const [tweetTitle, setTweetTitle] = useState("");
+    const [redirect, setRedirect] = useState(false);
     const classes = useStyles();
   
     const onChangeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,11 +88,14 @@ const PostInput = () => {
       setTweetImage(null);
       setTweetTitle("");
       setTweetMsg("");
+      alert("投稿有難う御座います！")
+      setRedirect(true);
     };
   
     return (
       <>
-          <div className={classes.heroContent}>
+        {redirect && <Redirect to="/feed" />}
+        <div className={classes.heroContent}>
           <Container maxWidth="sm">
             <Typography
               className={classes.heroContentText}

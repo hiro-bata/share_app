@@ -8,6 +8,9 @@ import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
 import styles from "./Home.module.css";
 
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
+
 const useStyles = makeStyles((theme) => ({
   icon: {
     marginRight: theme.spacing(2),

@@ -11,7 +11,6 @@ const useStyles = makeStyles({
   button: {
     fontWeight: "bold",
     fontSize: "20px",
-    marginTop: "3px",
     marginLeft: "30px",
   },
   list: {
@@ -27,7 +26,7 @@ const useStyles = makeStyles({
     width: "100%",
     height: "100%",
     lineHeight: "40px",
-    padding: "10px",
+    paddingTop: "20px",
     fontWeight: "bold",
     fontSize: "16px",
   },

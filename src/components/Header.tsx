@@ -5,7 +5,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
-import styles from './Header.module.css';
 
 const useStyles = makeStyles({
   button: {

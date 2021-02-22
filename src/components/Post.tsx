@@ -114,13 +114,12 @@ const Post: React.FC<PROPS> = (props) => {
           className={styles.post_commentIcon}
           onClick={() => setOpenComments(!openComments)}
         />
-
+        <div className={styles.number_of_comments}>コメント数：{comments.length}</div>
         {openComments && (
           <>
             {comments.map((com) => (
               <div key={com.id} className={styles.post_comment}>
                 <Avatar src={com.avatar} className={classes.small} />
-
                 <span className={styles.post_commentUser}>@{com.username}</span>
                 <span className={styles.post_commentText}>{com.text} </span>
                 <span className={styles.post_commentHeaderTime}>

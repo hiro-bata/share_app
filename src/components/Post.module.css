@@ -72,6 +72,9 @@
     color: black;
     margin-right: 10px;
   }
+  .number_of_comments {
+    font-weight: bold;
+  }
   .post_form {
     position: relative;
     display: flex;

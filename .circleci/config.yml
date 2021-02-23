@@ -19,8 +19,8 @@ jobs:
       - image: node:14.15.0
     working_directory: ~/Desktop/React/share_app
     steps:
-      - checkout
-      - run: npm install
+      # - checkout
+      # - run: npm install
       - run: npm run build
 
 

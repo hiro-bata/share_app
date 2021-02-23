@@ -12,22 +12,23 @@
     # jobs:
       # - welcome/run
         
-# version: 2.1
-# jobs:
-#   build:
-#     docker:
-#       - image: node:14.15.0
-#     steps:
-#       - checkout
-#       - run: npm install
-#       - run: npm run build
-
-
 version: 2.1
-orbs:
-  node: circleci/node@3.0.0
-workflows:
+jobs:
   build:
-    jobs:
+    docker:
+      - image: node:14.15.0
+    working_directory: ~/Desktop/React/share_app
+    steps:
+      - checkout
       - run: npm install
       - run: npm run build
+
+
+# version: 2.1
+# orbs:
+#   node: circleci/node@3.0.0
+# workflows:
+#   build:
+#     jobs:
+#       - run: npm install
+#       - run: npm run build

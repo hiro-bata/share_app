@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from "react";
-import styles from "./Post.module.css";
-import { db } from "../firebase";
-import firebase from "firebase/app";
-import { useSelector } from "react-redux";
-import { selectUser } from "../features/userSlice";
-import { Avatar } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import MessageIcon from "@material-ui/icons/Message";
-import SendIcon from "@material-ui/icons/Send";
+import React, { useState, useEffect } from 'react'
+import styles from './Post.module.css'
+import { db } from '../firebase'
+import firebase from 'firebase/app'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../features/userSlice'
+import { Avatar } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import MessageIcon from '@material-ui/icons/Message'
+import SendIcon from '@material-ui/icons/Send'
 
 interface PROPS {
-  postId: string;
-  avatar: string;
-  image: string;
-  title: string;
-  text: string;
-  timestamp: any;
-  username: string;
+  postId: string
+  avatar: string
+  image: string
+  title: string
+  text: string
+  timestamp: any
+  username: string
 }
 
 interface COMMENT {
-  id: string;
-  avatar: string;
-  text: string;
-  timestamp: any;
-  username: string;
+  id: string
+  avatar: string
+  text: string
+  timestamp: any
+  username: string
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -33,30 +33,30 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(3),
     marginRight: theme.spacing(1),
   },
-}));
+}))
 
 const Post: React.FC<PROPS> = (props) => {
-  const classes = useStyles();
-  const user = useSelector(selectUser);
-  const currentUser = firebase.auth().currentUser;
-  const [openComments, setOpenComments] = useState(false);
-  const [comment, setComment] = useState("");
+  const classes = useStyles()
+  const user = useSelector(selectUser)
+  const currentUser = firebase.auth().currentUser
+  const [openComments, setOpenComments] = useState(false)
+  const [comment, setComment] = useState('')
   const [comments, setComments] = useState<COMMENT[]>([
     {
-      id: "",
-      avatar: "", 
-      text: "",
-      username: "",
+      id: '',
+      avatar: '',
+      text: '',
+      username: '',
       timestamp: null,
     },
-  ]);
+  ])
 
   useEffect(() => {
     const unSub = db
-      .collection("posts")
+      .collection('posts')
       .doc(props.postId)
-      .collection("comments")
-      .orderBy("timestamp", "desc")
+      .collection('comments')
+      .orderBy('timestamp', 'desc')
       .onSnapshot((snapshot) => {
         setComments(
           snapshot.docs.map((doc) => ({
@@ -66,24 +66,24 @@ const Post: React.FC<PROPS> = (props) => {
             username: doc.data().username,
             timestamp: doc.data().timestamp,
           }))
-        );
-      });
+        )
+      })
 
     return () => {
-      unSub();
-    };
-  }, [props.postId]);
+      unSub()
+    }
+  }, [props.postId])
 
   const newComment = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    db.collection("posts").doc(props.postId).collection("comments").add({
+    e.preventDefault()
+    db.collection('posts').doc(props.postId).collection('comments').add({
       avatar: user.photoUrl,
       text: comment,
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       username: user.displayName,
-    });
-    setComment("");
-  };
+    })
+    setComment('')
+  }
   return (
     <div className={styles.post}>
       <div className={styles.post_avatar}>
@@ -94,9 +94,7 @@ const Post: React.FC<PROPS> = (props) => {
           <div className={styles.post_header}>
             <h3>
               <span className={styles.post_headerUser}>{props.username}</span>
-              <span className={styles.post_headerTime}>
-                {new Date(props.timestamp?.toDate()).toLocaleString()}
-              </span>
+              <span className={styles.post_headerTime}>{new Date(props.timestamp?.toDate()).toLocaleString()}</span>
             </h3>
           </div>
           <div className={styles.post_tweet}>
@@ -110,10 +108,7 @@ const Post: React.FC<PROPS> = (props) => {
           </div>
         )}
 
-        <MessageIcon
-          className={styles.post_commentIcon}
-          onClick={() => setOpenComments(!openComments)}
-        />
+        <MessageIcon className={styles.post_commentIcon} onClick={() => setOpenComments(!openComments)} />
         <div className={styles.number_of_comments}>コメント数：{comments.length}</div>
         {openComments && (
           <>
@@ -129,34 +124,30 @@ const Post: React.FC<PROPS> = (props) => {
             ))}
 
             {currentUser && (
-                <form onSubmit={newComment}>
-                    <div className={styles.post_form}>
-                        <input
-                            className={styles.post_input}
-                            type="text"
-                            placeholder="Type new comment..."
-                            value={comment}
-                            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                                setComment(e.target.value)
-                            }
-                        />
-                        <button
-                            disabled={!comment}
-                            className={
-                                comment ? styles.post_button : styles.post_buttonDisable
-                            }
-                            type="submit"
-                        >
-                            <SendIcon className={styles.post_sendIcon} />
-                        </button>
-                    </div>
-                </form>
+              <form onSubmit={newComment}>
+                <div className={styles.post_form}>
+                  <input
+                    className={styles.post_input}
+                    type="text"
+                    placeholder="Type new comment..."
+                    value={comment}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setComment(e.target.value)}
+                  />
+                  <button
+                    disabled={!comment}
+                    className={comment ? styles.post_button : styles.post_buttonDisable}
+                    type="submit"
+                  >
+                    <SendIcon className={styles.post_sendIcon} />
+                  </button>
+                </div>
+              </form>
             )}
           </>
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Post;
+export default Post

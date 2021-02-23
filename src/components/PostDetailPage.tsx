@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from "react";
-import styles from "./Feed.module.css";
-import { db } from "../firebase";
-import PostDetail from "./PostDetail";
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Container from '@material-ui/core/Container';
-import {RouteComponentProps} from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
+import styles from './Feed.module.css'
+import { db } from '../firebase'
+import PostDetail from './PostDetail'
+import CssBaseline from '@material-ui/core/CssBaseline'
+import Container from '@material-ui/core/Container'
+import { RouteComponentProps } from 'react-router-dom'
 
-type PageProps = {} & RouteComponentProps<{id: string}>;
+type PageProps = {} & RouteComponentProps<{ id: string }>
 
 const PostDetailPage: React.FC<PageProps> = (props) => {
-  const url = props.match.params.id;
+  const url = props.match.params.id
   const [posts, setPosts] = useState([
     {
-      id: "",
-      avatar: "",
-      image: "",
-      title: "",
-      text: "",
+      id: '',
+      avatar: '',
+      image: '',
+      title: '',
+      text: '',
       timestamp: null,
-      username: "",
+      username: '',
     },
-  ]);
+  ])
 
   useEffect(() => {
     const unSub = db
-      .collection("posts")
+      .collection('posts')
       // .where('documents', '==', 'DEM59YlW8AEWrNZYi7yx')
       .onSnapshot((snapshot) =>
         setPosts(
@@ -38,24 +38,23 @@ const PostDetailPage: React.FC<PageProps> = (props) => {
             username: doc.data().username,
           }))
         )
-      );
+      )
     return () => {
-      unSub();
-    };
-  }, []);
-
-  const getPost = async(id: string) => {
-    try {
-        const postRef = db.collection('posts').doc(id)
-        const postDoc = await postRef.get()
-        if (postDoc.exists) {
-            return postDoc.id
-        }        
-    } catch(err) {
-        console.log("Errorです")
+      unSub()
     }
-}
+  }, [])
 
+  const getPost = async (id: string) => {
+    try {
+      const postRef = db.collection('posts').doc(id)
+      const postDoc = await postRef.get()
+      if (postDoc.exists) {
+        return postDoc.id
+      }
+    } catch (err) {
+      console.log('Errorです')
+    }
+  }
 
   return (
     <div className={styles.feed}>
@@ -64,11 +63,11 @@ const PostDetailPage: React.FC<PageProps> = (props) => {
         <h1>投稿詳細</h1>
         {posts[0]?.id && (
           <>
-          {url}
-          {/* {posts[0].id}<br/>
+            {url}
+            {/* {posts[0].id}<br/>
           {posts[0].title}<br/>
           {posts[0].text} */}
-          {/* {posts.map((post) => (
+            {/* {posts.map((post) => (
             <PostDetail
               key={post.id}
               postId={post.id}
@@ -80,17 +79,16 @@ const PostDetailPage: React.FC<PageProps> = (props) => {
               username={post.username}
             />
           ))} */}
-          {posts.map((post) => {
-            if(post.id === url){
-              return post.title
-            }
-          }
-          )}
-        </>
-      )}
+            {posts.map((post) => {
+              if (post.id === url) {
+                return post.title
+              }
+            })}
+          </>
+        )}
       </Container>
     </div>
-  );
-};
+  )
+}
 
-export default PostDetailPage;
+export default PostDetailPage

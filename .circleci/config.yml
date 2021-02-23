@@ -24,10 +24,10 @@
 
 
 version: 2.1
-  jobs:
-    build:
-      docker: 
-        - image: circleci/node:4.8.2 # ジョブのコマンドが実行されるプライマリ コンテナ
-      steps:
-        - checkout # プロジェクト ディレクトリ内のコードをチェック アウトします
-        - run: npm run build # `echo` コマンドを実行します
+orbs:
+  node: circleci/node@3.0.0
+workflows:
+  build:
+    jobs:
+      - run: npm install
+      - run: npm run build

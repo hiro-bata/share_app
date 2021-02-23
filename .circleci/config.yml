@@ -20,7 +20,7 @@ jobs:
     working_directory: ~/Desktop/React/share_app
     steps:
       # - checkout
-      # - run: npm install
+      - run: npm install
       - run: npm run build
 
 

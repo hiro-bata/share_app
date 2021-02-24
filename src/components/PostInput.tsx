@@ -10,7 +10,6 @@ import AddAPhotoIcon from '@material-ui/icons/AddAPhoto'
 import { Redirect } from 'react-router-dom'
 import Container from '@material-ui/core/Container'
 import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles((theme) => ({
   heroContent: {
@@ -27,30 +26,30 @@ const useStyles = makeStyles((theme) => ({
 const PostInput = () => {
   const user = useSelector(selectUser)
   const currentUser = firebase.auth().currentUser
-  const [tweetImage, setTweetImage] = useState<File | null>(null)
-  const [tweetMsg, setTweetMsg] = useState('')
-  const [tweetTitle, setTweetTitle] = useState('')
+  const [postImage, setPostImage] = useState<File | null>(null)
+  const [postMsg, setPostMsg] = useState('')
+  const [postTitle, setPostTitle] = useState('')
   const [redirect, setRedirect] = useState(false)
   const classes = useStyles()
 
   const onChangeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files![0]) {
-      setTweetImage(e.target.files![0])
+      setPostImage(e.target.files![0])
       e.target.value = ''
     }
   }
 
-  const sendTweet = (e: React.FormEvent<HTMLFormElement>) => {
+  const sendPost = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (tweetImage) {
+    if (postImage) {
       const S = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
       const N = 16
       const randomChar = Array.from(crypto.getRandomValues(new Uint32Array(N)))
         .map((n) => S[n % S.length])
         .join('')
-      const fileName = randomChar + '_' + tweetImage.name
-      const uploadTweetImg = storage.ref(`images/${fileName}`).put(tweetImage)
-      uploadTweetImg.on(
+      const fileName = randomChar + '_' + postImage.name
+      const uploadPostImg = storage.ref(`images/${fileName}`).put(postImage)
+      uploadPostImg.on(
         firebase.storage.TaskEvent.STATE_CHANGED,
         () => {},
         (err) => {
@@ -65,8 +64,8 @@ const PostInput = () => {
               await db.collection('posts').add({
                 avatar: user.photoUrl,
                 image: url,
-                title: tweetTitle,
-                text: tweetMsg,
+                title: postTitle,
+                text: postMsg,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 username: user.displayName,
               })
@@ -77,15 +76,15 @@ const PostInput = () => {
       db.collection('posts').add({
         avatar: user.photoUrl,
         image: '',
-        title: tweetTitle,
-        text: tweetMsg,
+        title: postTitle,
+        text: postMsg,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         username: user.displayName,
       })
     }
-    setTweetImage(null)
-    setTweetTitle('')
-    setTweetMsg('')
+    setPostImage(null)
+    setPostTitle('')
+    setPostMsg('')
     alert('投稿有難う御座います！')
     setRedirect(true)
   }
@@ -105,11 +104,11 @@ const PostInput = () => {
       </div>
       <Container maxWidth="md">
         {!currentUser && <Redirect to="/auth" />}
-        <form onSubmit={sendTweet}>
-          <div className={styles.tweet_form}>
+        <form onSubmit={sendPost}>
+          <div className={styles.post_form}>
             <div className={styles.icon}>
               <Avatar
-                className={styles.tweet_avatar}
+                className={styles.post_avatar}
                 src={user.photoUrl}
                 onClick={async () => {
                   await auth.signOut()
@@ -117,31 +116,31 @@ const PostInput = () => {
               />
               <IconButton>
                 <label>
-                  <AddAPhotoIcon className={tweetImage ? styles.tweet_addIconLoaded : styles.tweet_addIcon} />
-                  <input className={styles.tweet_hiddenIcon} type="file" onChange={onChangeImageHandler} />
+                  <AddAPhotoIcon className={postImage ? styles.post_addIconLoaded : styles.post_addIcon} />
+                  <input className={styles.post_hiddenIcon} type="file" onChange={onChangeImageHandler} />
                 </label>
               </IconButton>
             </div>
             <input
-              className={styles.tweet_input_title}
+              className={styles.post_input_title}
               placeholder="知恵の名"
               type="text"
               autoFocus
-              value={tweetTitle}
-              onChange={(e) => setTweetTitle(e.target.value)}
+              value={postTitle}
+              onChange={(e) => setPostTitle(e.target.value)}
             />
             <textarea
-              className={styles.tweet_input_text}
+              className={styles.post_input_text}
               placeholder="詳細"
               // type="text"
               autoFocus
-              value={tweetMsg}
-              onChange={(e) => setTweetMsg(e.target.value)}
+              value={postMsg}
+              onChange={(e) => setPostMsg(e.target.value)}
             />
             <Button
               type="submit"
-              disabled={!tweetMsg}
-              className={tweetMsg ? styles.tweet_sendBtn : styles.tweet_sendDisableBtn}
+              disabled={!postMsg}
+              className={postMsg ? styles.post_sendBtn : styles.post_sendDisableBtn}
             >
               投稿
             </Button>

@@ -1,16 +1,16 @@
 .icon {
   display: flex;
 }
-.tweet_form {
+.post_form {
     margin-top: 30px;
     margin-bottom: 20px;
     position: relative;
   }
-  .tweet_avatar {
+  .post_avatar {
     cursor: pointer;
     margin-top: 2px;
   }
-  .tweet_input_title {
+  .post_input_title {
     margin-left: 40px;
     width: 90%;
     background-color: #e1e1e1;
@@ -21,7 +21,7 @@
     color: #333333;
     font-size: 18px;
   }
-  .tweet_input_text {
+  .post_input_text {
     margin-top: 30px;
     margin-left: 40px; 
     width: 90%;
@@ -34,18 +34,18 @@
     color: #333333;
     font-size: 18px;
   }
-  .tweet_addIcon {
+  .post_addIcon {
     cursor: pointer;
     color: black;
   }
-  .tweet_addIconLoaded {
+  .post_addIconLoaded {
     cursor: pointer;
     color: red;
   }
-  .tweet_hiddenIcon {
+  .post_hiddenIcon {
     display: none;
   }
-  .tweet_sendBtn {
+  .post_sendBtn {
     background-color: #00bfff !important;
     border: none !important;
     color: white !important;
@@ -57,7 +57,7 @@
     margin-top: 10px!important;
     margin-left: 80% !important;
   }
-  .tweet_sendDisableBtn {
+  .post_sendDisableBtn {
     background-color: gray !important;
     border: none !important;
     color: white !important;
@@ -72,10 +72,10 @@
   }
 
   @media screen and (max-width: 480px) {
-    .tweet_form {
+    .post_form {
       padding-right: 40px;
     }
-    .tweet_sendBtn {
+    .post_sendBtn {
       background-color: #00bfff !important;
       border: none !important;
       color: white !important;
@@ -87,7 +87,7 @@
       margin-top: 20px;
       margin-left: 80% !important;
     }
-    .tweet_sendDisableBtn {
+    .post_sendDisableBtn {
       background-color: gray !important;
       border: none !important;
       color: white !important;

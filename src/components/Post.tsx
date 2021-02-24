@@ -97,14 +97,14 @@ const Post: React.FC<PROPS> = (props) => {
               <span className={styles.post_headerTime}>{new Date(props.timestamp?.toDate()).toLocaleString()}</span>
             </h3>
           </div>
-          <div className={styles.post_tweet}>
+          <div className={styles.post_content}>
             <h2>知恵の名：{props.title}</h2>
             <p>{props.text}</p>
           </div>
         </div>
         {props.image && (
-          <div className={styles.post_tweetImage}>
-            <img src={props.image} alt="tweet" />
+          <div className={styles.post_image}>
+            <img src={props.image} alt="post" />
           </div>
         )}
 

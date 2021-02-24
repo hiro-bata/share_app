@@ -26,21 +26,21 @@
   font-size: 14px;
   color: gray;
 }
-.post_tweet {
+.post_content {
   margin-bottom: 10px;
   font-size: 15px;
   white-space: pre-wrap;
 }
-.post_tweet > p {
+.post_content > p {
   color: black;
   font-size: 20px;
 }
-.post_tweetImage {
+.post_image {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.post_tweetImage > img {
+.post_image > img {
   object-fit: contain;
   border-radius: 20px;
   max-height: 200px;
@@ -101,7 +101,7 @@
   .post_body {
     padding: 10px 0px 20px 0px;
   }
-  .post_tweet {
+  .post_content {
     position: relative;
     right: 30px;
     margin-bottom: 10px;
@@ -109,11 +109,11 @@
     font-size: 15px;
     white-space: pre-wrap;
   }
-  .post_tweet > p {
+  .post_content > p {
     color: black;
     font-size: 15px;
   }
-  .post_tweetImage > img {
+  .post_image > img {
     max-height: 130px;
   }
   .post_comment {
@@ -140,17 +140,17 @@
 }
 
 @media screen and (max-width: 375px) {
-  .post_tweet {
+  .post_content {
     margin-bottom: 10px;
     padding-right: 10px;
     font-size: 12px;
     white-space: pre-wrap;
   }
-  .post_tweet > p {
+  .post_content > p {
     color: black;
     font-size: 15px;
   }
-  .post_tweetImage > img {
+  .post_image > img {
     max-height: 100px;
   }
   .post_button {

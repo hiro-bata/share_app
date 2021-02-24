@@ -9,9 +9,6 @@ import { Link } from 'react-router-dom'
 import styles from './Home.module.css'
 
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
   heroContent: {
     backgroundImage:
       'url(https://images.unsplash.com/photo-1434493651957-4ec11beae249?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80)',
@@ -29,12 +26,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 'bold',
     padding: '5px',
   },
-  cardGrid: {
-    paddingBottom: theme.spacing(10),
-  },
 }))
-
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 const Home: React.FC = () => {
   const currentUser = firebase.auth().currentUser

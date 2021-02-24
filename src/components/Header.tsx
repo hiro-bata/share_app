@@ -61,7 +61,6 @@ const Header = () => {
     ) {
       return
     }
-
     setState({ ...state, [anchor]: open })
   }
 

@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 const PostInput = () => {
   const user = useSelector(selectUser)
   const currentUser = firebase.auth().currentUser
+  const postLike = 0
   const [postImage, setPostImage] = useState<File | null>(null)
   const [postMsg, setPostMsg] = useState('')
   const [postTitle, setPostTitle] = useState('')
@@ -68,6 +69,7 @@ const PostInput = () => {
                 text: postMsg,
                 timestamp: firebase.firestore.FieldValue.serverTimestamp(),
                 username: user.displayName,
+                likecount: postLike,
               })
             })
         }
@@ -80,6 +82,7 @@ const PostInput = () => {
         text: postMsg,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         username: user.displayName,
+        likecount: postLike,
       })
     }
     setPostImage(null)

@@ -8,6 +8,7 @@ import { Avatar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import MessageIcon from '@material-ui/icons/Message'
 import SendIcon from '@material-ui/icons/Send'
+import Like from './Like'
 
 interface PROPS {
   postId: string
@@ -17,6 +18,7 @@ interface PROPS {
   text: string
   timestamp: any
   username: string
+  likecount: number
 }
 
 interface COMMENT {
@@ -146,6 +148,7 @@ const Post: React.FC<PROPS> = (props) => {
           </>
         )}
       </div>
+      <Like postId={props.postId} likecount={props.likecount}/>
     </div>
   )
 }

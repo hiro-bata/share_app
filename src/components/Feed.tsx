@@ -31,6 +31,7 @@ const Feed: React.FC = () => {
       text: '',
       timestamp: null,
       username: '',
+      likecount: 0,
     },
   ])
 
@@ -48,6 +49,7 @@ const Feed: React.FC = () => {
             text: doc.data().text,
             timestamp: doc.data().timestamp,
             username: doc.data().username,
+            likecount: doc.data().likecount
           }))
         )
       )
@@ -79,6 +81,7 @@ const Feed: React.FC = () => {
                 text={post.text}
                 timestamp={post.timestamp}
                 username={post.username}
+                likecount={post.likecount}
               />
             ))}
           </>

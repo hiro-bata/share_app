@@ -49,7 +49,7 @@ const Feed: React.FC = () => {
             text: doc.data().text,
             timestamp: doc.data().timestamp,
             username: doc.data().username,
-            likecount: doc.data().likecount
+            likecount: doc.data().likecount,
           }))
         )
       )

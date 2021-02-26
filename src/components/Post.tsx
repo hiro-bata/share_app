@@ -148,7 +148,7 @@ const Post: React.FC<PROPS> = (props) => {
           </>
         )}
       </div>
-      <Like postId={props.postId} likecount={props.likecount}/>
+      {currentUser && <Like postId={props.postId} likecount={props.likecount} />}
     </div>
   )
 }

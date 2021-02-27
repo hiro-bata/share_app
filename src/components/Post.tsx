@@ -97,6 +97,7 @@ const Post: React.FC<PROPS> = (props) => {
             <h3>
               <span className={styles.post_headerUser}>{props.username}</span>
               <span className={styles.post_headerTime}>{new Date(props.timestamp?.toDate()).toLocaleString()}</span>
+              <span><Like postId={props.postId} likecount={props.likecount} /></span>
             </h3>
           </div>
           <div className={styles.post_content}>
@@ -148,7 +149,6 @@ const Post: React.FC<PROPS> = (props) => {
           </>
         )}
       </div>
-      {currentUser && <Like postId={props.postId} likecount={props.likecount} />}
     </div>
   )
 }

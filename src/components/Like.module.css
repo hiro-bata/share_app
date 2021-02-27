@@ -1,0 +1,23 @@
+.like {
+    display: flex;
+    margin-top: -15px;
+}
+.like_count {
+    padding-top: 8px;
+    margin-left: 20px;
+}
+.like_number {
+    font-size: 25px;
+    color: #FF367F;
+}
+
+@media screen and (max-width: 580px) {
+    .like {
+        margin-top: 10px;
+        margin-left: -20px;
+    }
+    .like_count {
+        padding-top: 8px;
+        margin-left: 0px;
+    }
+}

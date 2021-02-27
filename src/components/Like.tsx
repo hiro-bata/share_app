@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../firebase'
 import firebase from 'firebase/app'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../features/userSlice'
 import Button from '@material-ui/core/Button'
+import FavoriteIcon from '@material-ui/icons/Favorite'
+import styles from './Like.module.css'
 
 interface PROPS {
   postId: string
@@ -11,7 +11,6 @@ interface PROPS {
 }
 
 const Like: React.FC<PROPS> = (props) => {
-  const user = useSelector(selectUser)
   const currentUser = firebase.auth().currentUser
   const [liked, setLiked] = useState(false)
 
@@ -61,16 +60,31 @@ const Like: React.FC<PROPS> = (props) => {
 
   return (
     <>
-      {liked ? (
-        <Button variant="contained" color="primary" onClick={unlike}>
-          いいね解除
-        </Button>
-      ) : (
-        <Button variant="contained" color="primary" onClick={like}>
-          いいね
-        </Button>
-      )}
-      <div>いいね数：{props.likecount}</div>
+    <div className={styles.like}>
+    {currentUser && (
+        <>
+        {liked ? (
+            <Button
+            variant="contained"
+            style={{ backgroundColor: '#000066', color: '#FFF', margin: '0 20px 0 10px' }}
+            onClick={unlike}
+            >
+            NOT LIKE
+            </Button>
+        ) : (
+            <Button
+            variant="contained"
+            style={{ backgroundColor: '#FFFF00', margin: '0 20px 0 10px' }}
+            startIcon={<FavoriteIcon />}
+            onClick={like}
+            >
+            LIKE
+            </Button>
+        )}
+        </>
+    )}
+        <div className={styles.like_count}><span className={styles.like_number}>{props.likecount}</span>&nbsp;LIKE</div>
+    </div>
     </>
   )
 }

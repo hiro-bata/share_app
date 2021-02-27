@@ -135,7 +135,6 @@ const PostInput = () => {
             <textarea
               className={styles.post_input_text}
               placeholder="詳細"
-              // type="text"
               autoFocus
               value={postMsg}
               onChange={(e) => setPostMsg(e.target.value)}
